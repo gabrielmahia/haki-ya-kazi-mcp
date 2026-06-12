@@ -1,0 +1,58 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
+  "name": "haki-ya-kazi-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Kenya labour rights \u2014 minimum wages, dismissal guidance, maternity/paternity rights, trade unions, Labour Relations Court, NSSF/NHIF rights. 5 tools. 1st world equivalent: ACAS / NLRB.",
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Mahia",
+    "email": "contact@aikungfu.dev"
+  },
+  "tools": [
+    {
+      "name": "minimum_wage_lookup",
+      "description": "Kenya minimum wage by sector and county",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "unfair_dismissal_guide",
+      "description": "Unfair dismissal rights and remedies under Kenya Employment Act",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "maternity_paternity_rights",
+      "description": "Maternity and paternity leave rights in Kenya",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "trade_union_directory",
+      "description": "Kenya trade union directory and workers' rights organizations",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "labour_court_guide",
+      "description": "Labour Relations Court and Employment and Labour Relations Court guidance",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    }
+  ]
+}
