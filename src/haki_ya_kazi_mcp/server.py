@@ -2,7 +2,7 @@
 from __future__ import annotations
 from typing import Optional
 from fastmcp import FastMCP
-mcp = FastMCP(name="haki-ya-kazi-mcp", description="Kenya labour rights tools. DEMO data only.")
+mcp = FastMCP(name="haki-ya-kazi-mcp", instructions="Kenya labour rights tools. DEMO data only.")
 
 @mcp.tool(name="minimum_wage_lookup", description="Kenya minimum wage by sector and county. DEMO.")
 def minimum_wage_lookup(sector: Optional[str] = None, county: Optional[str] = None) -> dict:
