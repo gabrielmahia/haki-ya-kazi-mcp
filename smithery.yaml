@@ -1,0 +1,14 @@
+# Smithery configuration for haki-ya-kazi-mcp
+# East Africa AI Coordination Infrastructure — AI-KungFU
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: "haki-ya-kazi-mcp",
+      args: [],
+      env: {}
+    })
