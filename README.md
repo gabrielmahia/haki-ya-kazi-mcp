@@ -1,6 +1,7 @@
 # haki-ya-kazi-mcp
 
 [![haki-ya-kazi-mcp Glama score](https://glama.ai/mcp/servers/gabrielmahia/haki-ya-kazi-mcp/badges/score.svg)](https://glama.ai/mcp/servers/gabrielmahia/haki-ya-kazi-mcp)
+[![smithery badge](https://smithery.ai/badge/@gabrielmahia/haki-ya-kazi-mcp)](https://smithery.ai/server/@gabrielmahia/haki-ya-kazi-mcp)
 
 
 > Kenya labour rights via MCP — minimum wages, dismissal, maternity rights, trade unions, ELRC
