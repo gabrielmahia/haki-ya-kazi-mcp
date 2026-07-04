@@ -103,3 +103,7 @@ def labour_court_guide(query: Optional[str] = None) -> dict:
     return {"source": "DEMO — Kenya Employment and Labour Relations Court", "guidance": INFO,
             "registry": "judiciary.go.ke/labour | 020-2222288",
             "disclaimer": "Not legal advice. Consult an advocate or free legal aid."}
+
+def main() -> None:
+    """Console entry point."""
+    mcp.run()
