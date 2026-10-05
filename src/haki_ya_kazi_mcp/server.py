@@ -50,12 +50,12 @@ def unfair_dismissal_guide(situation: Optional[str] = None) -> dict:
 def maternity_paternity_rights(query: Optional[str] = None) -> dict:
     INFO = {
         "maternity_leave":  "3 months (90 days) fully paid. Can start 2 weeks before due date. Cannot be dismissed during.",
-        "maternity_pay":    "Full basic salary during maternity leave. Employer pays (reimburse via NHIF not automatic).",
+        "maternity_pay":    "Full basic salary during maternity leave. Employer pays (reimbursement from the health scheme is not automatic; SHA replaced NHIF in Oct 2024).",
         "paternity_leave":  "2 weeks (14 days) fully paid for fathers.",
         "adoption_leave":   "Female adopting a child under 3: 3 months leave. Male adopting: 2 weeks.",
         "breastfeeding":    "Right to 30-minute breastfeeding breaks twice daily for 3 months after return.",
         "protection":       "Cannot dismiss, demote, or discriminate against employee for taking maternity/paternity leave.",
-        "nssf_maternity":   "NHIF covers maternity hospital bills. ANC visits and normal delivery at NHIF-accredited facilities.",
+        "nssf_maternity":   "Maternity hospital bills are covered through SHA (which replaced NHIF in Oct 2024) with prior SHA registration; verify details at sha.go.ke.",
     }
     if query:
         q = query.lower()
