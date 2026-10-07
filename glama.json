@@ -1,8 +1,8 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
   "name": "haki-ya-kazi-mcp",
-  "version": "0.1.0",
-  "description": "MCP server for Kenya labour rights \u2014 minimum wages, dismissal guidance, maternity/paternity rights, trade unions, Labour Relations Court, NSSF/NHIF rights. 5 tools. 1st world equivalent: ACAS / NLRB.",
+  "version": "0.1.4",
+  "description": "MCP server for Kenya labour rights — minimum wages, dismissal guidance, maternit",
   "license": "MIT",
   "author": {
     "name": "Gabriel Mahia",
@@ -11,7 +11,7 @@
   "tools": [
     {
       "name": "minimum_wage_lookup",
-      "description": "Kenya minimum wage by sector and county",
+      "description": "Kenya minimum wage by sector and county. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -20,7 +20,7 @@
     },
     {
       "name": "unfair_dismissal_guide",
-      "description": "Unfair dismissal rights and remedies under Kenya Employment Act",
+      "description": "Kenya unfair dismissal rights under Employment Act 2007. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -29,7 +29,7 @@
     },
     {
       "name": "maternity_paternity_rights",
-      "description": "Maternity and paternity leave rights in Kenya",
+      "description": "Kenya maternity and paternity leave rights. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -38,7 +38,7 @@
     },
     {
       "name": "trade_union_directory",
-      "description": "Kenya trade union directory and workers' rights organizations",
+      "description": "Kenya trade union directory and worker rights organizations. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -47,7 +47,7 @@
     },
     {
       "name": "labour_court_guide",
-      "description": "Labour Relations Court and Employment and Labour Relations Court guidance",
+      "description": "Labour Relations Court and ELRC guidance in Kenya. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -68,5 +68,8 @@
     "mcp",
     "useful-rails",
     "ai-agents"
+  ],
+  "maintainers": [
+    "gabrielmahia"
   ]
 }
