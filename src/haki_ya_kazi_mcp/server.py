@@ -1,11 +1,17 @@
 """HakiYaKaziMCP — Kenya Labour Rights Tools (5 tools). All data DEMO."""
 from __future__ import annotations
+
 from typing import Optional
+
 from fastmcp import FastMCP
+
+# Annotations tell clients which tools are safe to auto-approve (read-only, no side effects).
+READ_ONLY = {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False}
+
 mcp = FastMCP(name="haki-ya-kazi-mcp", instructions="Kenya labour rights tools. DEMO data only.")
 
-@mcp.tool(name="minimum_wage_lookup", description="Kenya minimum wage by sector and county. DEMO.")
-def minimum_wage_lookup(sector: Optional[str] = None, county: Optional[str] = None) -> dict:
+@mcp.tool(name="minimum_wage_lookup", description="Kenya minimum wage by sector and county. DEMO.", annotations=READ_ONLY)
+def minimum_wage_lookup(sector: str | None = None, county: str | None = None) -> dict:
     WAGES_2025 = {
         "general_laborer_nairobi": {"monthly_kes": 16168, "daily_kes": 538, "note": "General laborer, Nairobi/Mombasa/Kisumu"},
         "general_laborer_other":   {"monthly_kes": 14642, "daily_kes": 487, "note": "General laborer, other areas"},
@@ -26,8 +32,8 @@ def minimum_wage_lookup(sector: Optional[str] = None, county: Optional[str] = No
             "annual_review": "Wages set by Legal Notice each April/May",
             "portal": "labour.go.ke | 020-2729800"}
 
-@mcp.tool(name="unfair_dismissal_guide", description="Kenya unfair dismissal rights under Employment Act 2007. DEMO.")
-def unfair_dismissal_guide(situation: Optional[str] = None) -> dict:
+@mcp.tool(name="unfair_dismissal_guide", description="Kenya unfair dismissal rights under Employment Act 2007. DEMO.", annotations=READ_ONLY)
+def unfair_dismissal_guide(situation: str | None = None) -> dict:
     SITUATIONS = {
         "no_notice":       "Entitled to statutory notice: 28 days (monthly paid) or 7 days (weekly paid). Or payment in lieu.",
         "no_reason":       "Employer must give valid reason for termination. Absence of reason = unfair dismissal.",
@@ -46,8 +52,8 @@ def unfair_dismissal_guide(situation: Optional[str] = None) -> dict:
             "time_limit": "File within 3 years of dismissal at ELRC",
             "free_advice": "Federation of Kenya Employers (FKE) for employer guidance. COTU for worker guidance."}
 
-@mcp.tool(name="maternity_paternity_rights", description="Kenya maternity and paternity leave rights. DEMO.")
-def maternity_paternity_rights(query: Optional[str] = None) -> dict:
+@mcp.tool(name="maternity_paternity_rights", description="Kenya maternity and paternity leave rights. DEMO.", annotations=READ_ONLY)
+def maternity_paternity_rights(query: str | None = None) -> dict:
     INFO = {
         "maternity_leave":  "3 months (90 days) fully paid. Can start 2 weeks before due date. Cannot be dismissed during.",
         "maternity_pay":    "Full basic salary during maternity leave. Employer pays (reimbursement from the health scheme is not automatic; SHA replaced NHIF in Oct 2024).",
@@ -65,8 +71,8 @@ def maternity_paternity_rights(query: Optional[str] = None) -> dict:
     return {"source": "DEMO — Employment Act 2007", "rights": INFO,
             "legal_basis": "Employment Act 2007, Sections 29-30", "ministry": "labour.go.ke"}
 
-@mcp.tool(name="trade_union_directory", description="Kenya trade union directory and worker rights organizations. DEMO.")
-def trade_union_directory(sector: Optional[str] = None) -> dict:
+@mcp.tool(name="trade_union_directory", description="Kenya trade union directory and worker rights organizations. DEMO.", annotations=READ_ONLY)
+def trade_union_directory(sector: str | None = None) -> dict:
     UNIONS = [
         {"name": "COTU-K (Central Organization of Trade Unions Kenya)", "sector": "All sectors",
          "role": "Umbrella body for Kenya trade unions", "contact": "020-2721444 | cotu.co.ke"},
@@ -84,8 +90,8 @@ def trade_union_directory(sector: Optional[str] = None) -> dict:
             "right_to_join": "All workers have right to join a union under Kenya Constitution Art.41",
             "registration": "File with Labour Relations Court if denied union access"}
 
-@mcp.tool(name="labour_court_guide", description="Labour Relations Court and ELRC guidance in Kenya. DEMO.")
-def labour_court_guide(query: Optional[str] = None) -> dict:
+@mcp.tool(name="labour_court_guide", description="Labour Relations Court and ELRC guidance in Kenya. DEMO.", annotations=READ_ONLY)
+def labour_court_guide(query: str | None = None) -> dict:
     INFO = {
         "jurisdiction": "ELRC handles: dismissal, wages, discrimination, collective bargaining disputes.",
         "how_to_file":  "Complete Form A (available at court registries). File at Nairobi ELRC or county ELRC (Mombasa, Kisumu, Nakuru, Nyeri, Garissa, Eldoret).",
