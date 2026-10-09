@@ -1,7 +1,7 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
   "name": "haki-ya-kazi-mcp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "MCP server for Kenya labour rights — minimum wages, dismissal guidance, maternit",
   "license": "MIT",
   "author": {
