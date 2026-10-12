@@ -11,7 +11,7 @@
   "tools": [
     {
       "name": "minimum_wage_lookup",
-      "description": "Kenya minimum wage by sector and county. DEMO.",
+      "description": "Kenya statutory minimum monthly and daily wages by occupation (general labourer, clerical officer, security guard, domestic worker, agriculture, hospitality, P1 teacher). Use when someone asks whether they are paid at least the minimum wage. With sector it returns the matching occupations (the Nairobi general-labourer wage if none match); with no argument it returns every occupation. The county argument is echoed back but does NOT change the result: the table only separates Nairobi, Mombasa and Kisumu from other areas by occupation. Figures are a 2025 static table labelled DEMO and not verified against the current Regulation of Wages Order: confirm with the Ministry of Labour before relying. Read-only.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -20,7 +20,7 @@
     },
     {
       "name": "unfair_dismissal_guide",
-      "description": "Kenya unfair dismissal rights under Employment Act 2007. DEMO.",
+      "description": "Kenya unfair-dismissal guidance under the Employment Act 2007: statutory notice, the need for a valid reason, redundancy steps and pay, summary dismissal, constructive dismissal, discrimination, the remedy and the time limit to file. Use when someone describes how they were dismissed or laid off. Keywords in situation (no_notice, no_reason, redundancy, summary, constructive, discrimination) select entries; if none match it returns the general time-limit guidance; with no argument it returns all situations. Not legal advice; static summary labelled DEMO, so confirm with an advocate or the ELRC. Read-only.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -29,7 +29,7 @@
     },
     {
       "name": "maternity_paternity_rights",
-      "description": "Kenya maternity and paternity leave rights. DEMO.",
+      "description": "Kenya maternity, paternity and adoption leave rights under the Employment Act 2007 (sections 29-30): leave length and pay, breastfeeding breaks, protection from dismissal, and how hospital bills are covered through SHA (which replaced NHIF in October 2024). Use when someone asks about leave for a new child. Keywords in query (maternity_leave, maternity_pay, paternity_leave, adoption, breastfeeding, protection) select entries; if none match, all rights are returned. Static summary labelled DEMO: verify current entitlements with the Ministry of Labour and sha.go.ke. Read-only.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -38,7 +38,7 @@
     },
     {
       "name": "trade_union_directory",
-      "description": "Kenya trade union directory and worker rights organizations. DEMO.",
+      "description": "A short, partial directory of major Kenyan trade unions and worker-rights bodies (COTU-K, KNUT, KUDHEIHA, KEWU, KAWU) with their sector and contact details, plus the constitutional right to join a union. Use when someone asks which union covers their sector. A sector text filters the list (falls back to all if nothing matches). Contact numbers are unverified and the list is not exhaustive. Read-only.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -47,7 +47,7 @@
     },
     {
       "name": "labour_court_guide",
-      "description": "Labour Relations Court and ELRC guidance in Kenya. DEMO.",
+      "description": "How to take a workplace dispute to the Employment and Labour Relations Court (ELRC) in Kenya: what it handles, how to file, cost, typical timeline, free legal help, reporting to the County Labour Office first, and NSSF disputes. Use when someone asks where or how to bring a labour claim. Keywords in query (jurisdiction, how_to_file, cost, timeline, free_help, labour_office, nssf_disputes) select entries; if none match, all guidance is returned. Not legal advice; static summary labelled DEMO, so verify fees and procedure with the court registry. Read-only.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
