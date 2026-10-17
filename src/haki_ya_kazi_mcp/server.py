@@ -11,27 +11,26 @@ READ_ONLY = {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": Fals
 
 mcp = FastMCP(name="haki-ya-kazi-mcp", instructions="Kenya labour rights tools. DEMO data only.")
 
-@mcp.tool(name="minimum_wage_lookup", description="Kenya statutory minimum monthly and daily wages by occupation (general labourer, clerical officer, security guard, domestic worker, agriculture, hospitality, P1 teacher). Use when someone asks whether they are paid at least the minimum wage. With sector it returns the matching occupations (the Nairobi general-labourer wage if none match); with no argument it returns every occupation. The county argument is echoed back but does NOT change the result: the table only separates Nairobi, Mombasa and Kisumu from other areas by occupation. Figures are a 2025 static table labelled DEMO and not verified against the current Regulation of Wages Order: confirm with the Ministry of Labour before relying. Read-only.", annotations=READ_ONLY)
+@mcp.tool(name="minimum_wage_lookup", description="Kenya statutory minimum wages under the Regulation of Wages (General) (Amendment) Order 2026, effective 1 May 2026: the general labourer, cleaner, gardener, house servant and day watchman minimum (KES 18,047.40 a month in Nairobi, Mombasa, Kisumu, Nakuru and Eldoret; KES 9,268 elsewhere) and two clerical and trades bands. Use when someone asks whether they are paid at least the minimum wage. sector is matched against the occupations in the table (spaces become underscores); an occupation that is not in the table returns matched false with the available keys and what is NOT covered (agriculture, private security, hospitality), never the general wage. The county argument is accepted but does not change the result. Returns the source, the matching wages with monthly (and where known daily and hourly) amounts, the available keys and a note. A DEMO table of figures reported by FKE and the press: verify against the Kenya Gazette. Read-only; no side effects.", annotations=READ_ONLY)
 def minimum_wage_lookup(sector: Annotated[str | None, Field(description="Optional occupation keyword such as security guard, domestic worker or hospitality; spaces become underscores; partial match. Omit for all occupations.")] = None, county: Annotated[str | None, Field(description="Accepted but ignored: it is echoed back and does not change the wages returned.")] = None) -> dict:
-    WAGES_2025 = {
-        "general_laborer_nairobi": {"monthly_kes": 16168, "daily_kes": 538, "note": "General laborer, Nairobi/Mombasa/Kisumu"},
-        "general_laborer_other":   {"monthly_kes": 14642, "daily_kes": 487, "note": "General laborer, other areas"},
-        "clerical_officer":        {"monthly_kes": 25000, "daily_kes": 833, "note": "Clerical/office workers"},
-        "security_guard_nairobi":  {"monthly_kes": 23756, "daily_kes": 791, "note": "Security guards, Nairobi"},
-        "domestic_worker_nairobi": {"monthly_kes": 16168, "daily_kes": 538, "note": "Domestic workers, Nairobi"},
-        "teacher_p1":              {"monthly_kes": 26390, "note": "P1 teacher (TSC scale)"},
-        "agriculture":             {"monthly_kes": 14642, "note": "Agricultural workers, general"},
-        "hospitality":             {"monthly_kes": 22572, "note": "Hotel/hospitality workers"},
+    # Regulation of Wages (General) (Amendment) Order, 2026: effective 1 May 2026 (12% general increase), Legal Notices 108 and 109, Kenya Gazette Supplements 95 and 96.
+    # Figures as reported by the Federation of Kenya Employers, Kenya Times, K24 and Kenyans.co.ke (cross-checked); verify against the Gazette.
+    CITIES = "Nairobi, Mombasa, Kisumu, Nakuru and Eldoret"
+    WAGES_2026 = {
+        "general_labourer_cities": {"monthly_kes": 18047.40, "daily_kes": 868.44, "hourly_kes": 161.34, "note": f"General labourer, cleaner, sweeper, gardener, children's ayah, house servant, day watchman, messenger: {CITIES}"},
+        "domestic_worker_cities": {"monthly_kes": 18047.40, "daily_kes": 868.44, "hourly_kes": 161.34, "note": f"Domestic workers (house servant, ayah, gardener, cleaner): {CITIES}"},
+        "general_labourer_other_areas": {"monthly_kes": 9268, "note": "General labourer in other parts of the country (reported; daily and hourly rates not in this table)"},
+        "junior_clerk_and_similar": {"monthly_kes": 23350.21, "note": "Machinists, shoe repairers, petrol station attendants, junior clerks, laundry operators, light tractor drivers (reported; the location band is not stated in the sources read)"},
+        "general_clerk_and_similar": {"monthly_kes": 27796.51, "note": "Receptionists, telephone operators, storekeepers, general clerks, pattern designers, garment cutters (reported; the location band is not stated in the sources read)"},
     }
+    NOT_IN_TABLE = "Not in this table: agricultural wages (a separate order raised them 15% in 2026), private security guards, hospitality and other regulated sectors. Check the Gazette or the Ministry of Labour."
+    SOURCE = "Regulation of Wages (General) (Amendment) Order, 2026, effective 1 May 2026, as reported by FKE, Kenya Times, K24 and Kenyans.co.ke; DEMO table, verify against the Kenya Gazette"
     if sector:
-        s = sector.lower().replace(" ","_")
-        matched = {k: v for k, v in WAGES_2025.items() if s in k}
-        return {"source": "DEMO — Ministry of Labour Wage Order 2024", "sector": sector, "county": county,
-                "wages": matched or {"general": WAGES_2025["general_laborer_nairobi"]},
-                "note": "Wages reviewed annually. Verify at parliament.go.ke/labour or Ministry of Labour."}
-    return {"source": "DEMO — Ministry of Labour Wage Order 2024", "all_minimum_wages": WAGES_2025,
-            "annual_review": "Wages set by Legal Notice each April/May",
-            "portal": "labour.go.ke | 020-2729800"}
+        s = sector.lower().replace(" ", "_")
+        matched = {k: v for k, v in WAGES_2026.items() if s in k}
+        return {"source": SOURCE, "sector": sector, "county": county, "wages": matched, "matched": bool(matched), "available": list(WAGES_2026), "not_in_table": NOT_IN_TABLE,
+                "note": "Minimum wages are set by Legal Notice; the county argument does not change the result. Verify at labour.go.ke."}
+    return {"source": SOURCE, "all_minimum_wages": WAGES_2026, "not_in_table": NOT_IN_TABLE, "effective": "1 May 2026 (retroactive; gazetted by Legal Notices 108 and 109)", "portal": "labour.go.ke"}
 
 @mcp.tool(name="unfair_dismissal_guide", description="Kenya unfair-dismissal guidance under the Employment Act 2007: statutory notice, the need for a valid reason, redundancy steps and pay, summary dismissal, constructive dismissal, discrimination, the remedy and the time limit to file. Use when someone describes how they were dismissed or laid off. Keywords in situation (no_notice, no_reason, redundancy, summary, constructive, discrimination) select entries; if none match it returns the general time-limit guidance; with no argument it returns all situations. Not legal advice; static summary labelled DEMO, so confirm with an advocate or the ELRC. Read-only.", annotations=READ_ONLY)
 def unfair_dismissal_guide(situation: Annotated[str | None, Field(description="Optional description of what happened, such as no notice, redundancy or summary dismissal. Omit for all situations.")] = None) -> dict:

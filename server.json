@@ -6,12 +6,12 @@
     "url": "https://github.com/gabrielmahia/haki-ya-kazi-mcp",
     "source": "github"
   },
-  "version": "0.1.7",
+  "version": "0.1.8",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "haki-ya-kazi-mcp",
-      "version": "0.1.7",
+      "version": "0.1.8",
       "transport": {
         "type": "stdio"
       }
