@@ -1,6 +1,8 @@
 """HakiYaKaziMCP — Kenya Labour Rights Tools (5 tools). All data DEMO."""
 from __future__ import annotations
 
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
 from typing import Annotated, Optional
 
 from fastmcp import FastMCP
@@ -9,7 +11,13 @@ from pydantic import Field
 # Annotations tell clients which tools are safe to auto-approve (read-only, no side effects).
 READ_ONLY = {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False}
 
-mcp = FastMCP(name="haki-ya-kazi-mcp", instructions="Kenya labour rights tools. DEMO data only.")
+try:
+    _VERSION = _pkg_version("haki-ya-kazi-mcp")
+except PackageNotFoundError:  # a source tree that was never installed
+    _VERSION = "0+unknown"
+
+
+mcp = FastMCP(name="haki-ya-kazi-mcp", instructions="Kenya labour rights tools. DEMO data only.", version=_VERSION)
 
 @mcp.tool(name="minimum_wage_lookup", description="Kenya statutory minimum wages under the Regulation of Wages (General) (Amendment) Order 2026, effective 1 May 2026: the general labourer, cleaner, gardener, house servant and day watchman minimum (KES 18,047.40 a month in Nairobi, Mombasa, Kisumu, Nakuru and Eldoret; KES 9,268 elsewhere) and two clerical and trades bands. Use when someone asks whether they are paid at least the minimum wage. sector is matched against the occupations in the table (spaces become underscores); an occupation that is not in the table returns matched false with the available keys and what is NOT covered (agriculture, private security, hospitality), never the general wage. The county argument is accepted but does not change the result. Returns the source, the matching wages with monthly (and where known daily and hourly) amounts, the available keys and a note. A DEMO table of figures reported by FKE and the press: verify against the Kenya Gazette. Read-only; no side effects.", annotations=READ_ONLY)
 def minimum_wage_lookup(sector: Annotated[str | None, Field(description="Optional occupation keyword such as security guard, domestic worker or hospitality; spaces become underscores; partial match. Omit for all occupations.")] = None, county: Annotated[str | None, Field(description="Accepted but ignored: it is echoed back and does not change the wages returned.")] = None) -> dict:
