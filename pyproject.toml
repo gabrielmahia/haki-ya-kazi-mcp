@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "haki-ya-kazi-mcp"
-version = "0.1.12"
+version = "0.1.13"
 description = "Kenya labour rights tools: minimum wages, unfair dismissal, maternity and paternity rights, trade unions, labour court guide"
 readme = "README.md"
 license = "MIT"
@@ -23,6 +23,7 @@ classifiers = [
 haki-ya-kazi-mcp = "haki_ya_kazi_mcp.server:mcp.run"
 
 [project.urls]
+Issues = "https://github.com/gabrielmahia/haki-ya-kazi-mcp/issues"
 Homepage = "https://github.com/gabrielmahia/haki-ya-kazi-mcp"
 Documentation = "https://github.com/gabrielmahia/nairobi-stack"
 "MCP Registry" = "https://registry.modelcontextprotocol.io"
