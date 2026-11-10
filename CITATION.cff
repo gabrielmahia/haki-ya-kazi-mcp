@@ -3,7 +3,7 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "haki-ya-kazi-mcp"
 abstract: "Kenya labour rights tools: minimum wages, unfair dismissal, maternity and paternity rights, trade unions, labour court guide"
-version: "0.1.13"
+version: "0.1.14"
 authors:
   - family-names: "Mahia"
     given-names: "Gabriel"
